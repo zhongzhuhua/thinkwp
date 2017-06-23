@@ -1,0 +1,8 @@
+@charset 'utf-8';
+@import '~theme/base.scss';
+@import '~theme/theme.scss';
+body,
+div,
+section {
+  color: $font-col;
+}

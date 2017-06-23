@@ -1,0 +1,32 @@
+/**
+ * 默认蓝色
+ */
+
+// ==== 文本 ====
+// 默认文本颜色
+$font-col: #333 !default;
+// 加深文本颜色
+$font-col-deep: #111 !default;
+// 提示信息颜色
+$font-col-warn: #999 !default;
+// ==== 文本 ====
+
+// ==== 按钮 ====
+// 操作成功按钮颜色
+$button-success: #1673d0 !default;
+// 操作成功按钮点击时的颜色
+$button-success-active: #004b97 !default;
+// 普通按钮间距
+$button-padding: .5em 1em !default;
+// 普通按钮 radius
+$button-radius: .3em !default;
+@mixin button-success {
+  padding: $button-padding;
+  border-radius: $button-radius;
+  background-color: $button-success;
+  color: #fff;
+}
+@mixin button-success-active {
+  background-color: $button-success-active;
+}
+// ==== 按钮 ====

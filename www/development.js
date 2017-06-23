@@ -17,6 +17,4 @@ instance.compile({
   plugins: []
 });
 
-var webpack = require('webpack');
-
 instance.run();
