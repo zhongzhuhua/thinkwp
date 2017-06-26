@@ -2,5 +2,7 @@
 
 export default {
   resource_on: false,
-  env: 'prd'
+  cluster_on: true,
+  env: 'prd',
+  static: '/'
 };

@@ -1,5 +1,6 @@
 'use strict';
 
 export default {
-  env: 'stg'
+  env: 'stg',
+  static: '/'
 };

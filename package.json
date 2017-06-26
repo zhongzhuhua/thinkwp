@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node www/development.js",
     "dev": "node www/development.js",
+    "webpackdev": "webpack-dev-server --env dev --inline --hot --port 5500",
+    "webpackstg": "webpack --env stg",
+    "webpack": "webpack --env prd",
     "stg": "node www/testing.js",
     "prd": "node www/production.js",
     "compile": "babel src/ --out-dir app/",
@@ -24,11 +27,14 @@
     "babel-loader": "^7.1.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-stage-1": "^6.16.0",
     "css-loader": "^0.28.4",
     "del": "^3.0.0",
+    "es6-promise": "^4.1.0",
     "file-loader": "^0.11.2",
+    "generate-asset-webpack-plugin": "^0.3.0",
     "jquery": "^3.2.1",
     "log4js": "^1.1.1",
     "node-sass": "^4.5.3",
@@ -41,7 +47,7 @@
     "webpack-dev-middleware": "^1.11.0",
     "webpack-dev-server": "^2.5.0",
     "webpack-hot-middleware": "^2.18.0",
-    "zepto": "^1.2.0"
+    "webpack-zepto": "0.0.1"
   },
   "repository": {
     "type": "git",

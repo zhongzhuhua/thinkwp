@@ -1,5 +1,11 @@
 // 基础配置
-global.configs = think.config;
+global.configs = {
+  env: think.config('env'),
+  static: think.config('static')
+};
+
+// 脚本样式 hash
+global.GlobalStaticHash = null;
 
 // 接口
 global.maps = {
