@@ -1,0 +1,21 @@
+@import '~scss/common.scss';
+html,
+body {
+  font-size: 14px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1
+}
+
+.clear {
+  clear: both;
+}
+
+.none {
+  display: none;
+}

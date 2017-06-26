@@ -60,8 +60,21 @@ plugins.push(new webpack.DefinePlugin({
 // autoprefixer
 plugins.push(new webpack.LoaderOptionsPlugin({
   options: {
-    postcss: function() {
-      return [require('autoprefixer')];
+    postcss: function(a) {
+      // console.log(a.resourcePath);
+      if (a.resourcePath.indexOf('.mm.') > -1) {
+        return [
+          require('autoprefixer')({
+            browsers: ['Android>=2.2', 'ios>=5']
+          })
+        ];
+      } else {
+        return [
+          require('autoprefixer')({
+            browsers: ['ie>=8', 'chrome>=4', 'safari>=4', 'firefox>=8']
+          })
+        ];
+      }
     }
   }
 }));
@@ -84,8 +97,6 @@ if (configs.minJs) {
   });
   plugins.push(uglifyPlug);
 }
-
-console.log(__dirname + '/www/dev/scss/' + (configs.theme != null ? 'theme/' + configs.theme : ''));
 
 module.exports = {
   // 脚本入口文件配置
@@ -112,7 +123,7 @@ module.exports = {
     }, {
       test: /\.scss$/,
       exclude: /node_modules/,
-      loader: 'style-loader!css-loader?minimize!sass-loader'
+      loader: 'style-loader!css-loader?minimize!sass-loader!postcss-loader'
     }]
   },
 
@@ -121,6 +132,7 @@ module.exports = {
   // require 引用入口配置
   resolve: {
     alias: {
+      css: __dirname + '/www/dev/css',
       scss: __dirname + '/www/dev/scss',
       theme: __dirname + '/www/dev/scss/' + (configs.theme != null ? 'theme/' + configs.theme : '')
     }

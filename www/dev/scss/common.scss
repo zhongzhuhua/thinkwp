@@ -10,3 +10,19 @@ ul,
 li {
   color: $font-col;
 }
+
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1
+}
+
+.clear {
+  clear: both;
+}
+
+.none {
+  display: none;
+}
