@@ -4,24 +4,36 @@ import fs from 'fs';
 export default class extends think.controller.base {
   init(http) {
     super.init(http);
+    let self = this;
     this.env = configs.env;
     this.static = configs.static;
     this.meta_title = '首页';
+    // if (this.env == 'dev') {
+    //   this.static = '/';
+    //   this.env = 'prd';
+    // }
     this.assign('StaticHash', function(src) {
       try {
-        if (configs.env != 'dev') {
+        if (self.env != 'dev') {
           let hash = GlobalStaticHash;
           if (hash == null || hash == '') {
-            hash = JSON.parse(fs.readFileSync('www/static/hash.' + configs.env + '.json', 'utf8'));
+            hash = JSON.parse(fs.readFileSync('www/static/hash.' + self.env + '.json', 'utf8'));
           }
           GlobalStaticHash = hash;
-          let result = hash[src.replace(/.js$/, '')];
-          result = result == null ? configs.static + src : configs.static + result;
-          return result;
+          let result = null;
+          let iscss = false;
+          if (src.indexOf('.js') > -1) {
+            result = hash[src.replace(/.js$/, '')];
+          } else {
+            iscss = true;
+            result = hash[src.replace(/.css$/, '')];
+          } 
+          result = result == null ? self.static + src : self.static + result;
+          return result = iscss ? result.replace('.js', '.css') : result;
         }
-        return configs.static + src;
+        return self.static + src;
       } catch (e) {
-        return configs.static + src;
+        return self.static + src;
       }
     });
   };
