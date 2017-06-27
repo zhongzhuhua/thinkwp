@@ -36,6 +36,7 @@ www/static/common
 www/static/css
 www/static/js
 www/*.json
+www/**/*.json
 
 app/
 runtime/
