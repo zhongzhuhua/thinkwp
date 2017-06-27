@@ -6,7 +6,6 @@ export default class extends think.controller.base {
     super.init(http);
     this.env = configs.env;
     this.static = configs.static;
-    this.DeviceWidth = 640;
     this.meta_title = '首页';
     this.assign('StaticHash', function(src) {
       try {
@@ -28,7 +27,9 @@ export default class extends think.controller.base {
   };
 
   // 公用处理
-  async __before() {};
+  async __before() {
+    this.DeviceWidth = 640;
+  };
 
   // 跳转路径
   goto(type) {

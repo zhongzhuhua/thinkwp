@@ -1,6 +1,7 @@
 'use strict';
+import utils from '../../../server/utils.js';
 
 export default {
   env: 'dev',
-  static: 'http://127.0.0.1:5500/static/'
+  static: 'http://' + utils.getIp() + ':5500/static/'
 };

@@ -1,4 +1,5 @@
 let webpack = require('webpack');
+let utils = require('./src/server/utils');
 let path = require('path');
 let GenerateAssetPlugin = require('generate-asset-webpack-plugin');
 let argv = process.argv;
@@ -107,7 +108,7 @@ module.exports = {
 
   // 脚本文件输出配置
   output: {
-    filename: env == 'dev' ? 'static/[name].js' : 'static/[name].js?[chunkhash:8]',
+    filename: env == 'dev' ? 'static/[name].js?[hash:8]' : 'static/[name].js?[chunkhash:8]',
     path: env == 'dev' ? __dirname + '/www/' : __dirname + '/www/'
   },
 
@@ -125,6 +126,11 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'style-loader!css-loader?minimize!sass-loader!postcss-loader'
     }]
+  },
+
+  devServer: {
+    host: utils.getIp(),
+    disableHostCheck: true
   },
 
   // 调试 map ，方便 es6 调试

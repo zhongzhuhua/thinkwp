@@ -13,7 +13,7 @@ global.maps = {
 };
 
 // 判断是否是 mobile
-global.checkMobile = function (agent) {
+global.checkMobile = function(agent) {
   let flag = false;
   agent = agent.toLowerCase();
   let keywords = ['android', 'iphone', 'ipod', 'ipad', 'windows phone', 'mqqbrowser'];
