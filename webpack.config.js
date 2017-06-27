@@ -144,7 +144,7 @@ module.exports = {
   },
 
   // 调试 map ，方便 es6 调试
-  devtool: env == 'dev' ? 'cheap-module-eval-source-map' : 'cheap-module-source-map',
+  devtool: 'source-map',
   // require 引用入口配置
   resolve: {
     alias: {

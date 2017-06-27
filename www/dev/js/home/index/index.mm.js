@@ -1,2 +1,4 @@
 import './index';
-alert($('meta[name="viewport"]').attr('content'));
+$(function() {
+  console.log('init');
+});
