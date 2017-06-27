@@ -2,6 +2,7 @@ let webpack = require('webpack');
 let utils = require('./src/server/utils');
 let path = require('path');
 let GenerateAssetPlugin = require('generate-asset-webpack-plugin');
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let argv = process.argv;
 argv = argv == null ? [] : argv;
 
@@ -36,6 +37,7 @@ let entryMap = {
 let plugins = [];
 let createJson = function(compilation) {
   let result = {};
+  console.log(compilation.chunks);
   for (let key in compilation.chunks) {
     let model = compilation.chunks[key];
     result[model.name] = model.files[0];
@@ -49,6 +51,10 @@ plugins.push(new GenerateAssetPlugin({
     cb(null, createJson(compilation));
   }
 }));
+
+// 样式
+let pluginCss = new ExtractTextPlugin('static/[name].css');
+plugins.push(pluginCss);
 
 // 环境变量
 plugins.push(new webpack.DefinePlugin({
@@ -124,7 +130,11 @@ module.exports = {
     }, {
       test: /\.scss$/,
       exclude: /node_modules/,
-      loader: 'style-loader!css-loader?minimize!sass-loader!postcss-loader'
+      // loader: 'style-loader!css-loader?minimize!sass-loader!postcss-loader',
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: 'css-loader?minimize!sass-loader!postcss-loader'
+      })
     }]
   },
 
@@ -134,7 +144,7 @@ module.exports = {
   },
 
   // 调试 map ，方便 es6 调试
-  devtool: 'source-map',
+  devtool: env == 'dev' ? 'cheap-module-eval-source-map' : 'cheap-module-source-map',
   // require 引用入口配置
   resolve: {
     alias: {
