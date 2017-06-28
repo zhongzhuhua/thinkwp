@@ -45,7 +45,6 @@ for(let key in entrys) {
 let plugins = [];
 let createJson = function(compilation) {
   let result = {};
-  console.log(compilation.chunks);
   for (let key in compilation.chunks) {
     let model = compilation.chunks[key];
     result[model.name] = model.files[0];
@@ -76,7 +75,6 @@ plugins.push(new webpack.DefinePlugin({
 plugins.push(new webpack.LoaderOptionsPlugin({
   options: {
     postcss: function(a) {
-      // console.log(a.resourcePath);
       if (a.resourcePath.indexOf('.mm.') > -1) {
         return [
           require('autoprefixer')({
@@ -113,6 +111,7 @@ if (configs.minJs) {
   plugins.push(uglifyPlug);
 }
 
+console.log(__dirname);
 module.exports = {
   // 脚本入口文件配置
   entry: entryMap,
