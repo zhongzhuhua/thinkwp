@@ -29,9 +29,17 @@ let configs = {
 let entryMap = {
   'lib/vendor': ['./www/dev/lib/vendor'],
   'lib/vendor.mm': ['./www/dev/lib/vendor.mm'],
-  'js/home/index/index': ['./www/dev/js/home/index/index.js'],
-  'js/home/index/index.mm': ['./www/dev/js/home/index/index.mm.js']
+  // 'js/home/index/index': ['./www/dev/js/home/index/index.js'],
+  // 'js/home/index/index.mm': ['./www/dev/js/home/index/index.mm.js']
 };
+
+// 读取所有JS文件
+let entrys = utils.getAllFiles(__dirname + '/www/dev/js', /.js$/);
+for(let key in entrys) {
+  let model = entrys[key].replace(__dirname + '/www/dev/', '');
+  entryMap[model.replace(/.js$/, '')] = './www/dev/' + model;
+}
+
 
 // 插件
 let plugins = [];
