@@ -1,0 +1,22 @@
+@import '~scss/common.scss';
+html,
+body,
+div {
+  font-size: 32px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.clear {
+  clear: both;
+}
+
+.none {
+  display: none;
+}

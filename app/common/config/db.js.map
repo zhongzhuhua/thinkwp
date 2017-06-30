@@ -1,0 +1,25 @@
+{
+    "version": 3,
+    "sources": [
+        "../../../src/common/config/db.js"
+    ],
+    "names": [
+        "adapter",
+        "dev",
+        "type",
+        "host",
+        "port",
+        "database",
+        "user",
+        "password",
+        "prefix",
+        "encoding",
+        "stg",
+        "prd"
+    ],
+    "mappings": "AAAA;AACA;;;;;;kBAIe;AACbA,WAAS;AACPC,SAAK;AACHC,YAAM,OADH;AAEHC,YAAM,WAFH;AAGHC,YAAM,EAHH;AAIHC,gBAAU,SAJP;AAKHC,YAAM,MALH;AAMHC,gBAAU,EANP;AAOHC,cAAQ,EAPL;AAQHC,gBAAU;AARP,KADE;AAWPC,SAAK;AACHR,YAAM,OADH;AAEHC,YAAM,WAFH;AAGHC,YAAM,EAHH;AAIHC,gBAAU,SAJP;AAKHC,YAAM,MALH;AAMHC,gBAAU,EANP;AAOHC,cAAQ,EAPL;AAQHC,gBAAU;AARP,KAXE;AAqBPE,SAAK;AACHT,YAAM,OADH;AAEHC,YAAM,WAFH;AAGHC,YAAM,EAHH;AAIHC,gBAAU,SAJP;AAKHC,YAAM,MALH;AAMHC,gBAAU,EANP;AAOHC,cAAQ,EAPL;AAQHC,gBAAU;AARP;AArBE;AADI,C",
+    "file": "../../../src/common/config/db.js",
+    "sourcesContent": [
+        "'use strict';\n/**\n * db config\n * @type {Object}\n */\nexport default {\n  adapter: {\n    dev: {\n      type: 'mysql',\n      host: '127.0.0.1',\n      port: '',\n      database: 'thinkjs',\n      user: 'root',\n      password: '',\n      prefix: '',\n      encoding: 'utf8'\n    },\n    stg: {\n      type: 'mysql',\n      host: '127.0.0.1',\n      port: '',\n      database: 'thinkjs',\n      user: 'root',\n      password: '',\n      prefix: '',\n      encoding: 'utf8'\n    },\n    prd: {\n      type: 'mysql',\n      host: '127.0.0.1',\n      port: '',\n      database: 'thinkjs',\n      user: 'root',\n      password: '',\n      prefix: '',\n      encoding: 'utf8'\n    }\n  }\n};\n"
+    ]
+}

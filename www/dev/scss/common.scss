@@ -1,0 +1,28 @@
+@charset 'utf-8';
+@import '~theme/base.scss';
+@import '~theme/theme.scss';
+body,
+div,
+section,
+a,
+nav,
+ul,
+li {
+  color: $font-col;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1
+}
+
+.clear {
+  clear: both;
+}
+
+.none {
+  display: none;
+}

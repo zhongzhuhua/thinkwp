@@ -1,0 +1,29 @@
+@mixin flex($val: 1) {
+  flex: $val;
+}
+
+// 640 设计稿
+@function rem($val) {
+  @return $val/64 * 1rem;
+}
+
+// 750 设计稿
+@function rem750($val) {
+  @return $val/75 * 1rem;
+}
+
+// 1080 设计稿
+@function rem108($val) {
+  @return $val/108 * 1rem;
+}
+
+// 18px = 1a
+@function rema($val) {
+  @return rem($val * 18);
+}
+
+// 禁用选中文字
+@mixin user-select($t: none) {
+  -khtml-user-select: $t;
+  user-select: $t;
+}

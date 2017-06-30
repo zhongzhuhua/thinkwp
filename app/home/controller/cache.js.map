@@ -1,0 +1,19 @@
+{
+    "version": 3,
+    "sources": [
+        "../../../src/home/controller/cache.js"
+    ],
+    "names": [
+        "clearAction",
+        "GlobalStaticHash",
+        "success",
+        "think",
+        "controller",
+        "base"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAGE;mBACMA,W;;;;;;AACJC,iCAAmB,IAAnB;+CACO,KAAKC,OAAL,E;;;;;;;;;;;;;;;;;;EAJkBC,MAAMC,UAAN,CAAiBC,I;;;AAM7C",
+    "file": "../../../src/home/controller/cache.js",
+    "sourcesContent": [
+        "'use strict';\n\nexport default class extends think.controller.base {\n  // 清除 hash 缓存\n  async clearAction() {\n    GlobalStaticHash = null;\n    return this.success();\n  };\n};"
+    ]
+}
