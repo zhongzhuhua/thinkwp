@@ -1,0 +1,16 @@
+import React from 'react';
+import {
+  Router,
+  Route,
+  hashHistory
+} from 'react-router';
+import Header from 'component/header';
+import Home from 'module/home';
+{Modules}
+export default function App() {
+  return (
+    <Router history={hashHistory}>
+      <Route path="/" component={Home} title="首页" />{Routes}
+    </Router>
+  );
+};
