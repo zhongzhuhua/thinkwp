@@ -8,6 +8,7 @@ export default class extends think.controller.base {
     this.env = configs.env;
     this.static = configs.static;
     this.meta_title = '首页';
+    this.user = this.session('LoginUser');
     // if (this.env == 'dev') {
     //   this.static = '/';
     //   this.env = 'prd';
@@ -41,6 +42,12 @@ export default class extends think.controller.base {
   // 公用处理
   async __before() {
     this.DeviceWidth = 640;
+  };
+
+  // 判断用户是否登录
+  islogin() {
+    let user = this.session('LoginUser');
+    return user != null && user.id > 0;
   };
 
   // 跳转路径

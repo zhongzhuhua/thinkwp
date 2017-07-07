@@ -1,0 +1,20 @@
+{% extends '../../_inc/layout.html' %}
+{% block content %}
+<div>
+  <input id="project" type="text" placeholder="请填写你的项目" value="default">
+</div>
+选择需要的功能：
+<div id="component">
+  <input type="checkbox" name="center" id="center">
+  <label for="center">个人中心</label>
+  <input type="checkbox" name="cashier" id="cashier">
+  <label for="cashier">收银台</label>
+</div>
+<div>
+  <button id="btn">生成配置文件</button>
+  <button id="build">构建项目</button>
+</div>
+{% endblock %}
+{% block script %}
+<script src="{{StaticHash('js/build/index/index.js')}}"></script>
+{% endblock %}

@@ -41,6 +41,8 @@ npm install
         └── view.js         -- 视图配置，配置 view 的文件命名规范等    
     └── bootstrap           -- 公用文件
         └── global.js       -- src 下公用配置文件和方法等         
+├── home                    -- 首页
+├── build                   -- 用户构建项目
 |view                       -- 视图文件，默认 nunjuck 模板引擎
 |www                        -- 网站文件
 ├── static                  -- 网站静态文件
