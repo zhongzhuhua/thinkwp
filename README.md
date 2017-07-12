@@ -28,9 +28,12 @@ npm install
 
 ```
 |app                        -- 构建目录
+├── dev                     -- 开发目录
+    └── sql                 -- 数据库更新文件
 |node_modules               -- 所需开发包
 |runtime                    -- 缓存目录 session 之类的
 |src                        -- 控制器，路由器，后端代码
+├── admin                   -- 后管平台，所有后管文件放置在这里
 ├── common                  -- 公用文件
     └── config              -- 公用配置文件
         └── env             -- 开发、测试、生产 三个配置文件
@@ -46,8 +49,8 @@ npm install
 |view                       -- 视图文件，默认 nunjuck 模板引擎
 |www                        -- 网站文件
 ├── static                  -- 网站静态文件
-├── dev                     -- 开发目录
-├── *.js                    -- 三个启动文件
+    └── admin               -- 后管平台，所有后管静态文件放置在这里
+    └── admin   *.js        -- 三个启动文件
 .gitignore                  -- git 配置
 build-config.js             -- 独立项目配置文件，单个项目的配置在这里修改
 configs.js                  -- 项目配置文件，是否压缩图片，配置 hyper.js 使用等
