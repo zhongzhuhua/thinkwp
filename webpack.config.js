@@ -27,17 +27,17 @@ let configs = {
 };
 
 let entryMap = {
-  'lib/vendor': ['./www/dev/lib/vendor'],
-  'lib/vendor.mm': ['./www/dev/lib/vendor.mm'],
-  // 'js/home/index/index': ['./www/dev/js/home/index/index.js'],
-  // 'js/home/index/index.mm': ['./www/dev/js/home/index/index.mm.js']
+  'lib/vendor': ['./dev/lib/vendor'],
+  'lib/vendor.mm': ['./dev/lib/vendor.mm'],
+  // 'js/home/index/index': ['./dev/js/home/index/index.js'],
+  // 'js/home/index/index.mm': ['./dev/js/home/index/index.mm.js']
 };
 
 // 读取所有JS文件
-let entrys = utils.getAllFiles(__dirname + '/www/dev/js', /.js$/);
+let entrys = utils.getAllFiles(__dirname + '/dev/js', /.js$/);
 for(let key in entrys) {
-  let model = entrys[key].replace(__dirname + '/www/dev/', '');
-  entryMap[model.replace(/.js$/, '')] = './www/dev/' + model;
+  let model = entrys[key].replace(__dirname + '/dev/', '');
+  entryMap[model.replace(/.js$/, '')] = './dev/' + model;
 }
 
 
@@ -155,9 +155,9 @@ module.exports = {
   // require 引用入口配置
   resolve: {
     alias: {
-      css: __dirname + '/www/dev/css',
-      scss: __dirname + '/www/dev/scss',
-      theme: __dirname + '/www/dev/scss/' + (configs.theme != null ? 'theme/' + configs.theme : '')
+      css: __dirname + '/dev/css',
+      scss: __dirname + '/dev/scss',
+      theme: __dirname + '/dev/scss/' + (configs.theme != null ? 'theme/' + configs.theme : '')
     }
   }
 };
