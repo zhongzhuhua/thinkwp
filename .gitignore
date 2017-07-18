@@ -41,3 +41,4 @@ www/**/*.json
 
 app/
 runtime/
+www/upload/

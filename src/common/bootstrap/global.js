@@ -32,3 +32,28 @@ global.checkMobile = function(agent) {
   }
   return flag;
 };
+
+/**
+ * 日期格式化
+ * @param extra 格式化
+ * @param date 日期，空的时候默认是 new Date()
+ */
+global.dateformat = function(extra, date) {
+  let D = date || new Date();
+  let time = {
+    "y": D.getFullYear(),
+    'm': D.getMonth() + 1,
+    'd': D.getDate(),
+    'H': D.getHours(),
+    'i': D.getMinutes(),
+    's': D.getSeconds()
+  }
+  let key = extra.split(/\W/);
+  let _date;
+  for (let k of key) {
+    time[k] = time[k] < 10 ? "0" + time[k] : time[k]
+    _date = extra.replace(k, time[k])
+    extra = _date;
+  }
+  return _date;
+};

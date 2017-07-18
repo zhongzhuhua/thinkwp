@@ -19,10 +19,8 @@ export default class extends think.controller.base {
   };
 
   async __before() {
-    await this.asession('LoginUser', {
-      id: 0
-    });
     let user = await this.asession('LoginUser');
+    console.log(user);
     this.user = user;
     if (user == null || !user.id) {
       if(this.isAjax()) {
