@@ -57,3 +57,16 @@ global.dateformat = function(extra, date) {
   }
   return _date;
 };
+
+/**
+ * 日志记录功能
+ */
+let log4js = require('log4js');
+log4js.configure('./log4js.json');
+global.logger = log4js;
+
+// global.logger.trace("==正常流程==");
+// global.logger.debug("--调试流程--");
+// global.logger.info("~~日志事务~~");
+// global.logger.warn("**报警报错**");
+// global.logger.error("##报错请查看##: \'./logs/log_test/\'");

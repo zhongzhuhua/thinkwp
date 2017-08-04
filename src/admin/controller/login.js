@@ -12,6 +12,6 @@ export default class extends think.controller.base {
     await this.session('Admin_LoginUser', {
       id: 1
     });
-    return this.display();
+    return this.display('index/index.html');
   };
 };

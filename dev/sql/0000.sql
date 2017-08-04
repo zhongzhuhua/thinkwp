@@ -1,10 +1,9 @@
--- 初始化
 -- phpMyAdmin SQL Dump
 -- version 4.5.2
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2017-07-12 13:09:27
+-- Generation Time: 2017-07-18 10:25:51
 -- 服务器版本： 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 

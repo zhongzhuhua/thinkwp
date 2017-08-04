@@ -1,0 +1,16 @@
+{
+  "appenders": [{
+    "type": "console",
+    "category": "console"
+  }, {
+    "category": "home",
+    "type": "dateFile",
+    "filename": "./logs/home/",
+    "pattern": "yyyy-MM-dd-hh.txt",
+    "alwaysIncludePattern": true
+  }],
+  "replaceConsole": false,
+  "levels": {
+    "home": "ALL"
+  }
+}
