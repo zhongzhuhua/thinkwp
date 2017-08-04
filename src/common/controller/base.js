@@ -42,7 +42,6 @@ export default class extends think.controller.base {
   async __before() {
     this.DeviceWidth = 640;
     this.user = await this.session('LoginUser');
-    console.log(this.user);
   };
 
   // 判断用户是否登录

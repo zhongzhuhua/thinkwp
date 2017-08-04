@@ -59,6 +59,67 @@ global.dateformat = function(extra, date) {
 };
 
 /**
+ * RSA 加密
+ */
+import NodeRSA from 'node-rsa';
+global.RSAKeys = {
+  // 登录
+  login: {
+    pub: '-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIpF8w4cM9poAno5i514HG5ay/\nfeCGT0Z6NQAz6KBsN+Xyqg8aezcz8dQd9cMrLGrxB226dy3y746a1sRbMG7Auo15\niyWWaEsfHMZEYCZ7ElQ0lKEwsrn6ISRjaRYPZU5axOIN/LuTDccdp16ZCRdHQpyu\nV6V7BYl5HzNOOOHzdwIDAQAB\n-----END PUBLIC KEY-----\n',
+    pri: '-----BEGIN PRIVATE KEY-----\nMIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAMikXzDhwz2mgCej\nmLnXgcblrL994IZPRno1ADPooGw35fKqDxp7NzPx1B31wyssavEHbbp3LfLvjprW\nxFswbsC6jXmLJZZoSx8cxkRgJnsSVDSUoTCyufohJGNpFg9lTlrE4g38u5MNxx2n\nXpkJF0dCnK5XpXsFiXkfM0444fN3AgMBAAECgYEAiQuc6WqLTSTZDDo2K1oEDrL6\nF6IHJjYn0Xk6NjqCuOhFbEa0IkZfIl/fnscrE+Y29YM5c8/L1s/B/AkN/atLOatp\nPov0Z45ZNcfK348ivtjr3uDdeGG5SDYkiFPV76uG0lva1sb9cydkZxSwGX4rUDff\nLDUC2/aYhwBE0sJTpUECQQDqhOj6s0JuxdhcnK6paPmCgD/1n7Q+L4WUDRlVpDMr\nIL+HtkImRp6N6qTL5T/z17zHnlf8MvekJL1uNncLy0tfAkEA2wUZa/F5Ff8Kw+kI\npt/Ut107k6hVRimijp6Po2kOVtOx3tNYKynjYj1tY/Q+5oJHL3BqyLTHLNh5ZL6a\nDr3m6QJAFLj/2T9DzIQA9VYG/QNAoO5yOGMPSztpw0ZRCcdDmjj/k59gQv+UfRfR\nzg6I0yQqEz2Dqs5aIY/5iSaY6FrjYwJAQNY0nWDhsKJMxIxS9FuktBeUkHSvsdKX\nfdLwwLZT+V439LfqDPUcjDOVE5b1m/WLLz7/TaU+pUb8QNev8ZdEKQJAP4HVqVga\nyo2F0MeLhMloAU0BrgVQvr8bnCTRr9jiIhjTQJx2GSW6EHALzwOjT5sJBgv+OXxM\nbHvR4EMOCC9KIg==\n-----END PRIVATE KEY-----\n'
+  }
+};
+
+global.encryptRSA = function(options) {
+  if (typeof options == 'string') {
+    options = {
+      str: options
+    };
+  }
+  let def = {
+    str: '',
+    scheme: 'pkcs1',
+    // publicKeys 中的值
+    key: RSAKeys.login.pub,
+    code: 'base64'
+  };
+
+  options = Object.assign(def, options);
+
+  let key = new NodeRSA(options.key);
+  key.setOptions({
+    encryptionScheme: options.scheme
+  });
+
+  let result = key.encrypt(options.str, options.code);
+  return result;
+};
+
+global.decryptRSA = function(options) {
+  if (typeof options == 'string') {
+    options = {
+      str: options
+    };
+  }
+  let def = {
+    str: '',
+    scheme: 'pkcs1',
+    key: RSAKeys.login.pri,
+    code: 'utf8'
+  };
+
+  options = Object.assign(def, options);
+
+  let key = new NodeRSA(options.key);
+  key.setOptions({
+    encryptionScheme: options.scheme
+  });
+
+  let result = key.decrypt(options.str, options.code);
+  return result;
+};
+
+/**
  * 日志记录功能
  */
 let log4js = require('log4js');
