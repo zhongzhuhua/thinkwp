@@ -1,5 +1,6 @@
 var thinkjs = require('thinkjs');
 var path = require('path');
+var exec = require('child_process').exec;
 
 var rootPath = path.dirname(__dirname);
 
@@ -16,5 +17,7 @@ instance.compile({
   presets: [],
   plugins: []
 });
+
+exec('webpack-dev-server --env dev --inline --hot --port ' + (think.config('port') + 1));
 
 instance.run();

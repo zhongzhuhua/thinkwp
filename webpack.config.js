@@ -28,9 +28,7 @@ let configs = {
 
 let entryMap = {
   'lib/vendor': ['./dev/lib/vendor'],
-  'lib/vendor.mm': ['./dev/lib/vendor.mm'],
-  // 'js/home/index/index': ['./dev/js/home/index/index.js'],
-  // 'js/home/index/index.mm': ['./dev/js/home/index/index.mm.js']
+  'lib/vendor.mm': ['./dev/lib/vendor.mm']
 };
 
 // 读取所有JS文件

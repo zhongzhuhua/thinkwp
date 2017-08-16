@@ -20,7 +20,6 @@ npm install
     * [启动开发环境] npm start
     * [启动测试环境] npm run stg
     * [启动生产环境] npm run prd
-    * [启动开发环境脚本] npm run webpackdev
     * [打包测试环境脚本样式] npm run webpackstg
     * [打包脚本样式] npm run webpack 或者直接 webpack
 
