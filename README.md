@@ -42,9 +42,12 @@ npm install
         └── session.js      -- session 超时配置
         └── view.js         -- 视图配置，配置 view 的文件命名规范等    
     └── bootstrap           -- 公用文件
-        └── global.js       -- src 下公用配置文件和方法等         
+        └── global.js       -- src 下公用配置文件和方法等      
+├── commons                 -- 前后端公用数据脚本   
 ├── home                    -- 首页
 ├── build                   -- 用户构建项目
+├── server                  -- 鼓舞代码
+    └── bll                 -- 业务流程代码
 |view                       -- 视图文件，默认 nunjuck 模板引擎
 |www                        -- 网站文件
 ├── static                  -- 网站静态文件

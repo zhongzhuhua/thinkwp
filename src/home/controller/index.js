@@ -1,11 +1,17 @@
 'use strict';
 
 import Base from '../../common/controller/base.js';
+import User from '../../server/bll/user.js';
 
 export default class extends Base {
-  indexAction() {
+  async indexAction() {
     let log = logger.getLogger('home');
     log.info('测试一下');
+
+    let user = new User();
+    await user.add({
+      name: 'zhong'
+    });
     return this.display(this.goto());
   };
 

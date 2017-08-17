@@ -153,6 +153,7 @@ module.exports = {
   // require 引用入口配置
   resolve: {
     alias: {
+      commons: __dirname + '/src/commons',
       css: __dirname + '/dev/css',
       scss: __dirname + '/dev/scss',
       theme: __dirname + '/dev/scss/' + (configs.theme != null ? 'theme/' + configs.theme : '')
