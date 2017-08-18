@@ -91,12 +91,12 @@ plugins.push(new webpack.LoaderOptionsPlugin({
 }));
 
 // 配置是否热更新，是否需要 demo
-if (env == 'dev') {
-  plugins.push(new webpack.HotModuleReplacementPlugin());
-}
+// if (env == 'dev') {
+//   plugins.push(new webpack.HotModuleReplacementPlugin());
+// }
 
 // 压缩脚本
-if (configs.minJs) {
+if (env != 'dev' && configs.minJs) {
   var uglifyPlug = new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false,
@@ -128,6 +128,7 @@ module.exports = {
       test: /\.(js)?$/,
       exclude: /node_modules/,
       loader: 'babel-loader?compact=false&plugins[]=transform-runtime&presets[]=es2015&presets[]=stage-2'
+      // loader: 'babel-loader'
     }, {
       test: /\.(jpe?g|gif|png|ico|svg)$/,
       exclude: /node_modules/,

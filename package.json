@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node www/development.js",
     "dev": "node www/development.js",
-    "webpackdev": "webpack-dev-server --env dev --inline --hot --port 8361",
+    "webpackdev": "webpack --watch --env dev",
     "webpackstg": "webpack --env stg",
     "webpack": "webpack --env prd",
     "stg": "node www/testing.js",

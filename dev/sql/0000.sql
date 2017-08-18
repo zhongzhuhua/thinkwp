@@ -1,194 +1,96 @@
--- phpMyAdmin SQL Dump
--- version 4.5.2
--- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: 2017-07-18 10:25:51
--- 服务器版本： 10.1.9-MariaDB
--- PHP Version: 5.6.15
+-- 状态表，状态一旦确定，则不能修改
+--
+DROP TABLE IF EXISTS STATUS;
+CREATE TABLE STATUS (
+  `id` varchar(4) NOT NULL PRIMARY KEY,
+  `name` varchar(50) NOT NULL COMMENT '状态名称',
+  `createTime` varchar(20) NOT NULL,
+  `createUser` int NOT NULL,
+  `memo` varchar(100) NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='状态表';
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Open2017`
+-- 角色表
 --
-
--- --------------------------------------------------------
-
---
--- 表的结构 `companys`
---
-
-CREATE TABLE `companys` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL COMMENT '企业名称',
-  `code` varchar(100) NOT NULL COMMENT '组织机构代码',
-  `regno` varchar(100) NOT NULL COMMENT '企业注册号',
-  `idfile` varchar(500) NOT NULL COMMENT '资质证明',
-  `status` varchar(2) NOT NULL COMMENT '状态',
-  `uid` int(11) NOT NULL COMMENT '管理者用户ID',
-  `type` varchar(4) NOT NULL COMMENT '企业类型',
-  `urole` varchar(40) NOT NULL COMMENT '企业联系人职位',
-  `phone` varchar(40) DEFAULT NULL COMMENT '企业座机'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='企业';
-
--- --------------------------------------------------------
+DROP TABLE IF EXISTS ROLES;
+CREATE TABLE ROLES (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL COMMENT '角色名称',
+  `createTime` varchar(20) NOT NULL,
+  `createUser` int NOT NULL,
+  `updateTime` varchar(20) NULL,
+  `updateUser` int NULL,
+  `comfirmTime` varchar(20) NULL,
+  `confirmUser` int NULL,
+  `backTime` varchar(20) NULL,
+  `backUser` int NULL,
+  `memo` varchar(100) NULL,
+  `status`  varchar(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 --
--- 表的结构 `company_import`
+-- 菜单权限表
 --
-
-CREATE TABLE `company_import` (
-  `id` int(11) NOT NULL,
-  `bdUid` int(11) NOT NULL,
-  `bdName` varchar(50) NOT NULL,
-  `bdUm` varchar(50) DEFAULT NULL,
-  `bdNick` varchar(50) DEFAULT NULL,
-  `bdMobile` varchar(20) NOT NULL,
-  `bdMemo` varchar(200) NOT NULL,
-  `sellUid` int(11) DEFAULT NULL,
-  `sellName` varchar(50) DEFAULT NULL,
-  `sellNick` varchar(50) DEFAULT NULL,
-  `sellUm` varchar(50) DEFAULT NULL,
-  `sellMemo` varchar(200) DEFAULT NULL,
-  `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `udpatetime` timestamp NULL DEFAULT NULL,
-  `comfiretime` timestamp NULL DEFAULT NULL,
-  `status` varchar(2) DEFAULT NULL,
-  `isok` varchar(1) NOT NULL DEFAULT '0',
-  `memo` varchar(200) DEFAULT NULL COMMENT '备用字段',
-  `cid` int(11) DEFAULT NULL COMMENT '企业',
-  `uid` int(11) DEFAULT NULL COMMENT '用户'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+DROP TABLE IF EXISTS MENUS;
+CREATE TABLE MENUS (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `pid` int NOT NULL DEFAULT 0 COMMENT '父菜单',
+  `name` varchar(50) NOT NULL COMMENT '权限名称',
+  `url` varchar(255) NULL COMMENT '访问路径',
+  `createTime` varchar(20) NOT NULL COMMENT '创建时间',
+  `createUser` int NOT NULL COMMENT '创建人',
+  `updateTime` varchar(20) NULL COMMENT '修改时间',
+  `updateUser` int NULL COMMENT '修改人',
+  `isLink` int NOT NULL DEFAULT 1 COMMENT '是否连接，0否，1是',
+  `isButton` int NOT NULL DEFAULT 0 COMMENT '是否按钮，0否，1是，如果是按钮不显示在按钮菜单',
+  `isUse` int NOT NULL DEFAULT 1 COMMENT '是否启用，0否，1是'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜单权限表';
 
 --
--- 表的结构 `company_prods`
+-- 用户表
 --
+DROP TABLE IF EXISTS ADMINS;
+DROP TABLE IF EXISTS USERS;
+CREATE TABLE USERS (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `role` int NOT NULL COMMENT '用户角色',
+  `name` varchar(50) NOT NULL COMMENT '用户登录名称',
+  `type` int NOT NULL DEFAULT 0 COMMENT '用户类型，0前台用户，1后管用户，2UM账号',
+  `email` varchar(50) NOT NULL COMMENT '用户邮箱',
+  `mobile` varchar(50) NOT NULL COMMENT '用户手机号',
+  `password` varchar(255) NOT NULL COMMENT '登录密码',
+  `nick` varchar(50) NULL COMMENT '用户昵称',
+  `phone` varchar(50) NULL COMMENT '用户座机',
+  `sex` varchar(2) NULL DEFAULT 0 COMMENT '性别，0男，1女，2其他',
+  `registChannel` int(11) DEFAULT NULL COMMENT '注册渠道 0:网络注册 1:后管录入',
+  `status`  varchar(4) NOT NULL,
+  `createTime` varchar(20) NOT NULL,
+  `createIp` varchar(128) NULL COMMENT '注册 IP',
+  `loginTime` varchar(20) NULL,
+  `loginIp` varchar(128) NULL,
+  `loginTimes` int DEFAULT 0 COMMENT '登录次数',
+  `lastLoginIp` varchar(128) NULL COMMENT '最后登录ip',
+  `lastLoginTime` varchar(20) NULL COMMENT '最后登录时间',
+  `companyId` int COMMENT '企业',
+  `companyRole` int NULL COMMENT '0.普通用户 1.企业用户 2. 企业管理员',
+  `applyId` int NULL COMMENT '供应商'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='后台用户表';
 
-CREATE TABLE `company_prods` (
-  `id` int(11) NOT NULL,
-  `pid` int(11) NOT NULL COMMENT '产品ID',
-  `cid` int(11) DEFAULT NULL COMMENT '企业ID',
-  `uid` int(11) DEFAULT NULL COMMENT '用户',
-  `begintime` timestamp NULL DEFAULT NULL COMMENT '有效期-开始',
-  `endtime` timestamp NULL DEFAULT NULL COMMENT '有效期-结束',
-  `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '申请日期',
-  `updatetime` timestamp NULL DEFAULT NULL COMMENT '修改日期',
-  `status` varchar(2) NOT NULL COMMENT '状态',
-  `reason` varchar(500) DEFAULT NULL COMMENT '申请原因',
-  `confirmReason` varchar(500) DEFAULT NULL COMMENT '审核原因'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='企业产品表';
+ALTER TABLE `USERS`
+  ADD UNIQUE KEY `UQ_email` (`name`, `type`, `email`) USING HASH,
+  ADD UNIQUE KEY `UQ_mobile` (`name`, `type`, `mobile`) USING HASH;
 
--- --------------------------------------------------------
+-- 
+-- 前台用户供应商角色
+--
+DROP TABLE IF EXISTS USER_APPLY;
+CREATE TABLE USER_APPLY(
+  `uid` int NOT NULL COMMENT '前台用户',
+  `applyRole` int NOT NULL COMMENT '前台用户角色'
+);
 
---
--- 表的结构 `log_auth`
---
-
-CREATE TABLE `log_auth` (
-  `uid` int(11) NOT NULL COMMENT '授权人',
-  `auid` int(11) NOT NULL COMMENT '被授权人',
-  `type` varchar(4) NOT NULL COMMENT '操作类型',
-  `status` varchar(2) NOT NULL COMMENT '状态',
-  `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '操作日期',
-  `cid` int(11) DEFAULT NULL COMMENT '企业id'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- 表的结构 `users`
---
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL COMMENT '用户名称',
-  `mobile` varchar(11) NOT NULL COMMENT '用户手机',
-  `password` varchar(200) NOT NULL COMMENT '用户登录密码',
-  `role` varchar(4) NOT NULL COMMENT '用户角色/用户类型',
-  `status` varchar(2) NOT NULL COMMENT '用户状态',
-  `source` varchar(4) NOT NULL COMMENT '注册来源',
-  `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '注册时间',
-  `updatetime` timestamp NULL DEFAULT NULL COMMENT '修改时间',
-  `cid` int(11) DEFAULT NULL COMMENT '企业'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `companys`
---
-ALTER TABLE `companys`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `code_UNIQUE` (`code`),
-  ADD UNIQUE KEY `regno_UNIQUE` (`regno`),
-  ADD KEY `user_idx` (`uid`);
-
---
--- Indexes for table `company_import`
---
-ALTER TABLE `company_import`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `company_prods`
---
-ALTER TABLE `company_prods`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name_UNIQUE` (`email`),
-  ADD UNIQUE KEY `mobile_UNIQUE` (`mobile`);
-
---
--- 在导出的表使用AUTO_INCREMENT
---
-
---
--- 使用表AUTO_INCREMENT `companys`
---
-ALTER TABLE `companys`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- 使用表AUTO_INCREMENT `company_import`
---
-ALTER TABLE `company_import`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- 使用表AUTO_INCREMENT `company_prods`
---
-ALTER TABLE `company_prods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- 使用表AUTO_INCREMENT `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- 限制导出的表
---
-
---
--- 限制表 `companys`
---
-ALTER TABLE `companys`
-  ADD CONSTRAINT `user` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+ALTER TABLE `USER_APPLY`
+  ADD UNIQUE KEY `PK_UID_APPLY` (`uid`, `applyRole`) USING HASH,
+  ADD INDEX `INDEX_UID` (`uid`) USING HASH;

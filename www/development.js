@@ -18,6 +18,7 @@ instance.compile({
   plugins: []
 });
 
-exec('webpack-dev-server --env dev --inline --hot --port ' + (think.config('port') + 1));
+// exec('webpack-dev-server --env dev --inline --hot --port ' + (think.config('port') + 1));
+exec('webpack --watch --env dev');
 
 instance.run();
