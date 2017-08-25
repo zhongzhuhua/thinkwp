@@ -40,6 +40,9 @@ export default class extends think.controller.base {
 
   // 公用处理
   async __before() {
+    this.header('Expires', '0');
+    this.header('Cache-Control', 'no-store,private,post-check=0,pre-check=0,max-age=0');
+    this.header('Pragma', 'no-cache');
     this.DeviceWidth = 640;
     this.user = await this.session('LoginUser');
   };
